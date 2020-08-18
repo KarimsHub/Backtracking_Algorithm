@@ -1,18 +1,18 @@
 N = 4 # maze size
   
-# A function to print solution matrix sol 
+# A function to print solution matrix 
 def printSolution( sol ): 
       
-    for i in sol:
-        for j in i:
-            print(str(j) + " ", end ="") 
+    for i in sol: # gets to the first row 
+        for j in i: # gets the differents collums in the row
+            print(str(j) + " ", end ="") # prints the numbers in collums
         print("") 
 
 # check if x, y is valid 
 # index for N * N Maze 
-def isSafe( maze, x, y ): 
+def isSafe( maze, x, y ): # maze must be defined before the function is actually working
       
-    if x >= 0 and x < N and y >= 0 and y < N and maze[x][y] == 1: 
+    if x >= 0 and x < N and y >= 0 and y < N and maze[x][y] == 1: # starting point at postion x = 0, y = 0 and count until n (in this case 4) - 1
         return True
       
     return False
@@ -26,7 +26,7 @@ def isSafe( maze, x, y ):
 def solveMaze( maze ): 
       
     # Creating a 4 * 4 2-D list
-    sol = [ [ 0 for j in range(4) ] for i in range(4) ] # holds the path traversed by the rat so far
+    sol = [ [ 0 for j in range(4) ] for i in range(4) ] # creates a maze containing all zeros 
       
     if solveMazeUtil(maze, 0, 0, sol) == False: # will modify the sol matrix with the required path from curent position(x,y) to destination(N-1, N-1)
         print("Solution doesn't exist"); 
@@ -39,8 +39,8 @@ def solveMaze( maze ):
 def solveMazeUtil(maze, x, y, sol): # maze is the matrix representing the blocks in the maze, x and y are the coordinates of the rat
       
     # if (x, y is goal) return True 
-    if x == N - 1 and y == N - 1 and maze[x][y]== 1: 
-        sol[x][y] = 1
+    if x == N - 1 and y == N - 1 and maze[x][y]== 1: # stops when x == N-1 and y == N-1 because we reached the goal
+        sol[x][y] = 1 # sets the 1 in the last position in maze 
         return True
 
 # Check if maze[x][y] is valid 
